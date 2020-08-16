@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@screenshot-hall/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@screenshot-hall/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@screenshot-hall/models": ["libs/models/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
