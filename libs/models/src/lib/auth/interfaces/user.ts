@@ -1,9 +1,11 @@
-export interface IUser {
-  id: string;
+import { IGallery } from '../../gallery/interfaces';
+import { IScreenshot } from '../../screenshot/interfaces';
+import { BaseModel } from '../../utils/base-model';
+
+export interface IUser extends BaseModel {
   username: string;
   email: string;
   password: string;
-  createdAt: Date;
-  updatedAt: Date;
-  isDeleted: Date;
+  galleries: IGallery[];
+  screenshots: IScreenshot[];
 }

@@ -4,9 +4,10 @@ import { AppConfig } from '../configuration/app.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './modules/auth/auth.module';
 import { GalleryModule } from './modules/gallery/gallery.module';
-import { join } from 'path';
 import { GalleryEntity } from './modules/gallery/entities/gallery.entity';
 import { UserEntity } from './modules/auth/entities/user.entity';
+import { ScreenshotModule } from './modules/screenshot/screenshot.module';
+import { ScreenshotEntity } from './modules/screenshot/entities/screenshot.entity';
 
 @Module({
   imports: [
@@ -20,11 +21,12 @@ import { UserEntity } from './modules/auth/entities/user.entity';
         return {
           ...database,
           type: 'postgres',
-          entities: [UserEntity, GalleryEntity],
+          entities: [UserEntity, GalleryEntity, ScreenshotEntity],
           autoLoadEntities: true,
         };
       },
     }),
+    ScreenshotModule,
   ],
   controllers: [],
   providers: [],
