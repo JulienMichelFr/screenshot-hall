@@ -4,7 +4,6 @@ import { SignInDTO, SignUpDTO } from '@screenshot-hall/models';
 import {
   ConflictException,
   InternalServerErrorException,
-  Optional,
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
