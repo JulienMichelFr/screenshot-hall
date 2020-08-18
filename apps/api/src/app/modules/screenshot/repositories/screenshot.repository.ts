@@ -15,6 +15,8 @@ export class ScreenshotRepository extends Repository<ScreenshotEntity> {
     screenshot.gallery = gallery;
     screenshot.user = user;
     screenshot.name = createScreenshotDTO.name;
+    screenshot.file = createScreenshotDTO.fileId;
+    screenshot.mimetype = createScreenshotDTO.mimetype;
     await screenshot.save();
     return screenshot;
   }

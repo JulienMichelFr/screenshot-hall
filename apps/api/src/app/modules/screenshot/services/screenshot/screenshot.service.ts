@@ -3,9 +3,10 @@ import { ScreenshotRepository } from '../../repositories/screenshot.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ScreenshotEntity } from '../../entities/screenshot.entity';
 import { CreateScreenshotDTO } from '@screenshot-hall/models';
-import { GalleryEntity } from '../../../gallery/entities/gallery.entity';
 import { UserEntity } from '../../../auth/entities/user.entity';
 import { GalleryRepository } from '../../../gallery/repositories/gallery.repository';
+import { IFile } from '../../../../utils/interfaces/file';
+import { DataService } from '../../../data/services/uploader/data.service';
 
 @Injectable()
 export class ScreenshotService {
@@ -13,7 +14,8 @@ export class ScreenshotService {
     @InjectRepository(ScreenshotRepository)
     private screenshotRepository: ScreenshotRepository,
     @InjectRepository(GalleryRepository)
-    private galleryRepository: GalleryRepository
+    private galleryRepository: GalleryRepository,
+    private uploaderService: DataService
   ) {}
 
   findScreenshots(): Promise<ScreenshotEntity[]> {
@@ -22,6 +24,7 @@ export class ScreenshotService {
 
   async createScreenshot(
     createScreenshotDTO: CreateScreenshotDTO,
+    file: IFile,
     user: UserEntity
   ): Promise<ScreenshotEntity> {
     const gallery = await this.galleryRepository.findOne({
@@ -32,10 +35,20 @@ export class ScreenshotService {
       throw new NotFoundException('Gallery not found');
     }
 
+    createScreenshotDTO.fileId = await this.uploaderService.uploadScreenshot(
+      user.id,
+      file
+    );
+    createScreenshotDTO.mimetype = file.mimetype;
+
     return this.screenshotRepository.createScreenshot(
       createScreenshotDTO,
       gallery,
       user
     );
+  }
+
+  async findOne(id: string, user: UserEntity): Promise<ScreenshotEntity> {
+    return this.screenshotRepository.findOne({ id, userId: user.id });
   }
 }

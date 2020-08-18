@@ -22,4 +22,8 @@ export class ScreenshotEntity extends DefaultEntity implements IScreenshot {
 
   @Column()
   userId: string;
+  @Column()
+  file: string;
+  @Column()
+  mimetype: string;
 }

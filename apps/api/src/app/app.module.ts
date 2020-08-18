@@ -8,6 +8,7 @@ import { GalleryEntity } from './modules/gallery/entities/gallery.entity';
 import { UserEntity } from './modules/auth/entities/user.entity';
 import { ScreenshotModule } from './modules/screenshot/screenshot.module';
 import { ScreenshotEntity } from './modules/screenshot/entities/screenshot.entity';
+import { DataModule } from './modules/data/data.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ScreenshotEntity } from './modules/screenshot/entities/screenshot.entit
       },
     }),
     ScreenshotModule,
+    DataModule,
   ],
   controllers: [],
   providers: [],

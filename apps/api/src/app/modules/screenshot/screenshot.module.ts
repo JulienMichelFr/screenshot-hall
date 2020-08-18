@@ -6,12 +6,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ScreenshotRepository } from './repositories/screenshot.repository';
 import { GalleryModule } from '../gallery/gallery.module';
 import { GalleryRepository } from '../gallery/repositories/gallery.repository';
+import { DataModule } from '../data/data.module';
 
 @Module({
   imports: [
     AuthModule,
     TypeOrmModule.forFeature([ScreenshotRepository, GalleryRepository]),
     GalleryModule,
+    DataModule,
   ],
   providers: [ScreenshotService],
   controllers: [ScreenshotController],

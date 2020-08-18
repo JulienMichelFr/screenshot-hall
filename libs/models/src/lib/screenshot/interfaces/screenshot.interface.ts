@@ -7,4 +7,6 @@ export interface IScreenshot extends BaseModel {
   galleryId: string;
   user: IUser;
   userId: string;
+  file: string;
+  mimetype: string;
 }
