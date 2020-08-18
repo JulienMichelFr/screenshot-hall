@@ -11,13 +11,19 @@ export class ScreenshotEntity extends DefaultEntity implements IScreenshot {
 
   // Joins
 
-  @ManyToOne((type) => GalleryEntity, (gallery) => gallery.screenshots)
+  @ManyToOne((type) => GalleryEntity, (gallery) => gallery.screenshots, {
+    eager: false,
+    onDelete: 'CASCADE',
+  })
   gallery: GalleryEntity;
 
   @Column()
   galleryId: string;
 
-  @ManyToOne((type) => UserEntity)
+  @ManyToOne((type) => UserEntity, (user) => user.screenshots, {
+    eager: false,
+    onDelete: 'CASCADE',
+  })
   user: UserEntity;
 
   @Column()

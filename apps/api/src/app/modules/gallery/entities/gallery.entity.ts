@@ -13,10 +13,13 @@ export class GalleryEntity extends DefaultEntity implements IGallery {
 
   @OneToMany((type) => ScreenshotEntity, (screenshot) => screenshot.gallery, {
     eager: false,
+    cascade: true,
   })
   screenshots: ScreenshotEntity[];
 
-  @ManyToOne((type) => UserEntity, (user) => user.galleries, { eager: false })
+  @ManyToOne((type) => UserEntity, (user) => user.galleries, {
+    eager: false,
+  })
   user: UserEntity;
 
   @Column()

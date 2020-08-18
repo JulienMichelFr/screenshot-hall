@@ -26,13 +26,16 @@ export class GalleryRepository extends Repository<GalleryEntity> {
   }
 
   async removeGallery(galleryId: string, user: UserEntity) {
-    const gallery: GalleryEntity = await this.findOne({
-      id: galleryId,
-      userId: user.id,
-    });
+    const gallery: GalleryEntity = await this.findOne(
+      {
+        id: galleryId,
+        userId: user.id,
+      },
+      { relations: ['screenshots'] }
+    );
     if (!gallery) {
       throw new NotFoundException('Gallery not found');
     }
-    await gallery.softRemove();
+    await gallery.softRemove({});
   }
 }

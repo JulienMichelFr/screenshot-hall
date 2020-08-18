@@ -34,11 +34,13 @@ export class UserEntity extends DefaultEntity implements IUser {
   // Joins
   @OneToMany((type) => GalleryEntity, (gallery) => gallery.user, {
     eager: false,
+    cascade: true,
   })
   galleries: GalleryEntity[];
 
   @OneToMany((type) => ScreenshotEntity, (screenshot) => screenshot.user, {
     eager: false,
+    cascade: true,
   })
   screenshots: ScreenshotEntity[];
 
