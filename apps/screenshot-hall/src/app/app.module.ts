@@ -4,17 +4,29 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import AppConfig from '../configuration/app.config';
-import * as config from './../assets/config.json';
+import config from './../assets/config.json';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter() {
+          return localStorage.getItem('accessToken');
+        },
+        allowedDomains: [config.api],
+        disallowedRoutes: [`${config.api}/api/auth/login`],
+      },
+    }),
+  ],
   providers: [
     {
       provide: AppConfig,
       useFactory() {
-        // @ts-ignore
-        return AppConfig.fromPlain(config.default);
+        return AppConfig.fromPlain(config);
       },
       deps: [],
     },

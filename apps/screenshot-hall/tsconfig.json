@@ -3,7 +3,8 @@
   "files": [],
   "include": [],
   "compilerOptions": {
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   },
   "references": [
     {
