@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '@screenshot-hall/api-interfaces';
+import AppConfig from '../configuration/app.config';
 
 @Component({
   selector: 'screenshot-hall-root',
@@ -8,6 +7,5 @@ import { Message } from '@screenshot-hall/api-interfaces';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  constructor(public config: AppConfig) {}
 }

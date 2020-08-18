@@ -38,3 +38,4 @@ testem.log
 .DS_Store
 Thumbs.db
 config/
+apps/screenshot-hall/src/assets/config.json

@@ -1,0 +1,14 @@
+{
+  "front": {
+    "architect": {
+      "config": {
+        "builder": "@nrwl/workspace:run-commands",
+        "options": {
+          "commands": [
+            "ts-node "
+          ]
+        }
+      }
+    }
+  }
+}
