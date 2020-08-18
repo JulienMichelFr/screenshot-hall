@@ -20,10 +20,10 @@ import { GalleryEntity } from '../../entities/gallery.entity';
 
 @UseInterceptors(ClassSerializerInterceptor)
 @Controller('galleries')
-@UseGuards(AuthGuard())
 export class GalleryController {
   constructor(private galleryService: GalleryService) {}
 
+  @UseGuards(AuthGuard())
   @Post()
   @UsePipes(ValidationPipe)
   createGallery(
@@ -38,6 +38,7 @@ export class GalleryController {
     return this.galleryService.findAll();
   }
 
+  @UseGuards(AuthGuard())
   @Delete('/:id')
   removeGallery(
     @Param('id') id: string,

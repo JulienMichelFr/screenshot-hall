@@ -26,7 +26,6 @@ import { Response as EResponse } from 'express';
 const MAX_SIZE = 5_000_000; //5Mb
 
 @UseInterceptors(ClassSerializerInterceptor)
-@UseGuards(AuthGuard())
 @Controller('screenshots')
 export class ScreenshotController {
   constructor(
@@ -34,6 +33,7 @@ export class ScreenshotController {
     private dataService: DataService
   ) {}
 
+  @UseGuards(AuthGuard())
   @Post()
   @UsePipes(ValidationPipe)
   @UseInterceptors(FileInterceptor('file', { limits: { fileSize: MAX_SIZE } }))
