@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser, SignInDTO, SignUpDTO } from '@screenshot-hall/models';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map, shareReplay, switchMap, take, tap } from 'rxjs/operators';
+import { map, shareReplay, switchMap, take } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import AppConfig from '../../../../../configuration/app.config';
 import { TOKEN_KEY } from '../../../../../utils/constantes';

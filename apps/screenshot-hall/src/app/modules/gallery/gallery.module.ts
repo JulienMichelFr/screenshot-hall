@@ -7,9 +7,10 @@ import { GalleryRoutingModule } from './gallery-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
+import { CreateGalleryPageComponent } from './pages/create-gallery-page/create-gallery-page.component';
 
 @NgModule({
-  declarations: [GalleryComponent, GalleryListPageComponent],
+  declarations: [GalleryComponent, GalleryListPageComponent, CreateGalleryPageComponent],
   imports: [
     CommonModule,
     MatCardModule,
