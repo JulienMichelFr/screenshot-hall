@@ -48,7 +48,7 @@ export class ScreenshotService {
     );
   }
 
-  async findOne(id: string, user: UserEntity): Promise<ScreenshotEntity> {
-    return this.screenshotRepository.findOne({ id, userId: user.id });
+  async findOne(id: string): Promise<ScreenshotEntity> {
+    return this.screenshotRepository.findOne({ id });
   }
 }

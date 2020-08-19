@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GalleryComponent } from './components/gallery/gallery.component';
+import { GalleryCardComponent } from './components/gallery-card/gallery-card.component';
 import { GalleryListPageComponent } from './pages/gallery-list-page/gallery-list-page.component';
 import { MatCardModule } from '@angular/material/card';
 import { GalleryRoutingModule } from './gallery-routing.module';
@@ -12,13 +12,18 @@ import { CreateGalleryComponent } from './components/create-gallery/create-galle
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { GalleryDetailPageComponent } from './pages/gallery-detail-page/gallery-detail-page.component';
+import { GalleryResolver } from './resolvers/gallery/gallery.resolver';
+import { GalleryDetailComponent } from './components/gallery-detail/gallery-detail.component';
 
 @NgModule({
   declarations: [
-    GalleryComponent,
+    GalleryCardComponent,
     GalleryListPageComponent,
     CreateGalleryPageComponent,
     CreateGalleryComponent,
+    GalleryDetailPageComponent,
+    GalleryDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +36,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
   ],
-  exports: [GalleryListPageComponent, GalleryComponent],
+  providers: [GalleryResolver],
+  exports: [GalleryListPageComponent, GalleryCardComponent],
 })
 export class GalleryModule {}

@@ -3,16 +3,18 @@ import {
   Component,
   Input,
   OnInit,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 import { IGallery } from '@screenshot-hall/models';
 
 @Component({
   selector: 'screenshot-hall-gallery',
-  templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.scss'],
+  templateUrl: './gallery-card.component.html',
+  styleUrls: ['./gallery-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GalleryComponent implements OnInit {
+export class GalleryCardComponent implements OnInit {
   @Input() gallery: IGallery;
 
   constructor() {}

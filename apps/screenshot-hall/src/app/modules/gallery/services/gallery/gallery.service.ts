@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import AppConfig from '../../../../../configuration/app.config';
 import { CreateGalleryDTO, IGallery } from '@screenshot-hall/models';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +17,21 @@ export class GalleryService {
     return this.http.get<IGallery[]>(this.endpoint);
   }
 
-  /*public getGalleryById(id: string): Observable<IGallery> {
-    return this.collection.doc<IGallery>(id);
-  }*/
+  public getGalleryById(id: string): Observable<IGallery> {
+    return this.http.get<IGallery>(`${this.endpoint}/${id}`).pipe(
+      map((gallery) => {
+        return {
+          ...gallery,
+          screenshots: gallery.screenshots.map((screenshot) => {
+            return {
+              ...screenshot,
+              url: `${this.config.api}/api/screenshots/${screenshot.id}/download`,
+            };
+          }),
+        };
+      })
+    );
+  }
 
   public createGallery(
     createGalleryDTO: CreateGalleryDTO
@@ -32,8 +45,5 @@ export class GalleryService {
   ): Promise<void> {
     return this.getGalleryById(id).update({ name, isPublic, game });
   }
-
-  private createId(): string {
-    return this.afs.createId();
-  }*/
+  */
 }

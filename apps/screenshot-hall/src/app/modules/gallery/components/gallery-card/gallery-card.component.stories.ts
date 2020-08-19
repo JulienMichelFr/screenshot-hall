@@ -1,4 +1,4 @@
-import { GalleryComponent } from './gallery.component';
+import { GalleryCardComponent } from './gallery-card.component';
 import { moduleMetadata } from '@storybook/angular';
 import { GalleryModule } from '../../gallery.module';
 import { Timestamp } from '../../../../utils';
@@ -6,8 +6,8 @@ import { array, select, text } from '@storybook/addon-knobs';
 import { GamePlatform } from '../../../../utils/enums/game-platform.enum';
 
 export default {
-  title: 'gallery/gallery',
-  component: GalleryComponent,
+  title: 'gallery-card/gallery-card',
+  component: GalleryCardComponent,
   decorators: [
     moduleMetadata({
       imports: [GalleryModule],
@@ -16,7 +16,7 @@ export default {
 };
 
 export const Gallery = () => ({
-  component: GalleryComponent,
+  component: GalleryCardComponent,
   props: {
     gallery: {
       createdAt: Timestamp.fromDate(new Date()),

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { GalleryRepository } from '../../repositories/gallery.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateGalleryDTO } from '@screenshot-hall/models';
@@ -21,6 +21,14 @@ export class GalleryService {
 
   async findAll(): Promise<GalleryEntity[]> {
     return this.galleryRepository.findGalleries();
+  }
+
+  async findById(id: string): Promise<GalleryEntity> {
+    try {
+      return await this.galleryRepository.findGallyById(id);
+    } catch (e) {
+      throw new NotFoundException('Gallery not found');
+    }
   }
 
   async removeGallery(galleryId: string, user: UserEntity): Promise<void> {

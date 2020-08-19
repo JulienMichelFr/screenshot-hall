@@ -55,15 +55,11 @@ export class ScreenshotController {
   }
 
   @Get('/:id/download')
-  async download(
-    @Param('id') id: string,
-    @GetUser() user: UserEntity,
-    @Response() response: EResponse
-  ) {
-    const screenshot = await this.screenshotService.findOne(id, user);
+  async download(@Param('id') id: string, @Response() response: EResponse) {
+    const screenshot = await this.screenshotService.findOne(id);
     response.append('content-type', screenshot.mimetype);
     const file = await this.dataService.downloadScreenshot(
-      user.id,
+      screenshot.userId,
       screenshot.file
     );
     file.pipe(response);

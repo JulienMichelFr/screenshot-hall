@@ -25,6 +25,15 @@ export class GalleryRepository extends Repository<GalleryEntity> {
     });
   }
 
+  async findGallyById(id: string): Promise<GalleryEntity> {
+    return this.findOneOrFail(
+      {
+        id,
+      },
+      { relations: ['user', 'screenshots'] }
+    );
+  }
+
   async removeGallery(galleryId: string, user: UserEntity) {
     const gallery: GalleryEntity = await this.findOne(
       {

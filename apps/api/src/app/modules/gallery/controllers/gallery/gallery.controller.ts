@@ -38,6 +38,11 @@ export class GalleryController {
     return this.galleryService.findAll();
   }
 
+  @Get('/:id')
+  findGalleryById(@Param('id') id: string): Promise<GalleryEntity> {
+    return this.galleryService.findById(id);
+  }
+
   @UseGuards(AuthGuard())
   @Delete('/:id')
   removeGallery(
