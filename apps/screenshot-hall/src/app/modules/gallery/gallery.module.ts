@@ -8,9 +8,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CreateGalleryPageComponent } from './pages/create-gallery-page/create-gallery-page.component';
+import { CreateGalleryComponent } from './components/create-gallery/create-gallery.component';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [GalleryComponent, GalleryListPageComponent, CreateGalleryPageComponent],
+  declarations: [
+    GalleryComponent,
+    GalleryListPageComponent,
+    CreateGalleryPageComponent,
+    CreateGalleryComponent,
+  ],
   imports: [
     CommonModule,
     MatCardModule,
@@ -18,6 +27,9 @@ import { CreateGalleryPageComponent } from './pages/create-gallery-page/create-g
     MatIconModule,
     MatButtonModule,
     MatBadgeModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [GalleryListPageComponent, GalleryComponent],
 })

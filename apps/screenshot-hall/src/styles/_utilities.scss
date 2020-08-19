@@ -1,0 +1,8 @@
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+
+  & > * {
+    flex: 1 1 auto;
+  }
+}

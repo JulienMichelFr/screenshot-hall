@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { GalleryService } from '../../services/gallery/gallery.service';
+import { CreateGalleryDTO } from '@screenshot-hall/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'screenshot-hall-create-gallery-page',
   templateUrl: './create-gallery-page.component.html',
-  styleUrls: ['./create-gallery-page.component.scss']
+  styleUrls: ['./create-gallery-page.component.scss'],
 })
 export class CreateGalleryPageComponent implements OnInit {
+  constructor(private galleryService: GalleryService, private router: Router) {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  async create(createGalleryDTO: CreateGalleryDTO): Promise<boolean> {
+    await this.galleryService.createGallery(createGalleryDTO).toPromise();
+    return this.router.navigate(['/galleries']);
   }
-
 }

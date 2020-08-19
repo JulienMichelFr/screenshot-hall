@@ -49,7 +49,7 @@ export class AuthService {
       .post<{ accessToken: string }>(`${this.endpoint}/signin`, credentials)
       .toPromise();
     localStorage.setItem(TOKEN_KEY, accessToken);
-    return this.router.navigate(['/']);
+    return this.router.navigate(['/galleries']);
   }
 
   public signOut(): Promise<boolean> {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import AppConfig from '../../../../../configuration/app.config';
-import { IGallery } from '@screenshot-hall/models';
+import { CreateGalleryDTO, IGallery } from '@screenshot-hall/models';
 
 @Injectable({
   providedIn: 'root',
@@ -20,25 +20,11 @@ export class GalleryService {
     return this.collection.doc<IGallery>(id);
   }*/
 
-  /*public async createGallery({
-    name,
-    game,
-    isPublic,
-  }: Partial<IGallery>): Promise<void> {
-    const { uid }: User = await this.afa.currentUser;
-    const id: string = this.createId();
-    const createdAt = Timestamp.now();
-    const result: IGallery = {
-      id,
-      name,
-      isPublic,
-      game,
-      user: uid,
-      createdAt,
-      starredFrom: [],
-    };
-    return this.getGalleryById(id).set(result);
-  }*/
+  public createGallery(
+    createGalleryDTO: CreateGalleryDTO
+  ): Observable<IGallery> {
+    return this.http.post<IGallery>(this.endpoint, createGalleryDTO);
+  }
 
   /*public updateGallery(
     id: string,
