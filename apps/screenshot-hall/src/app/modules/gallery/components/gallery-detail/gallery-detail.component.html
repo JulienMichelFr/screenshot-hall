@@ -1,6 +1,6 @@
 <h1>{{gallery.name}}</h1>
 
 <div *ngFor="let screen of gallery.screenshots">
-  <img width="300" [src]="screen.url">
+  <img [src]="screen.files.medium.url">
   <p>{{screen.name}}</p>
 </div>

@@ -2,7 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import AppConfig from '../../../../../configuration/app.config';
-import { CreateGalleryDTO, IGallery } from '@screenshot-hall/models';
+import {
+  CreateGalleryDTO,
+  IGallery,
+  IScreenshot,
+  IScreenshotFile,
+  LargeScreenshotFile,
+  MediumScreenshotFile,
+  OriginalScreenshotFile,
+  SmallScreenshotFile,
+} from '@screenshot-hall/models';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -22,12 +31,29 @@ export class GalleryService {
       map((gallery) => {
         return {
           ...gallery,
-          screenshots: gallery.screenshots.map((screenshot) => {
-            return {
-              ...screenshot,
-              url: `${this.config.api}/api/screenshots/${screenshot.id}/download`,
-            };
-          }),
+          screenshots: gallery.screenshots.map(
+            (screenshot): IScreenshot => {
+              const withUrl = (screen: IScreenshotFile): IScreenshotFile => {
+                return {
+                  ...screen,
+                  url: `${this.config.api}/api/screenshots/${screenshot.id}/download?size=${screen.size}`,
+                };
+              };
+              return {
+                ...screenshot,
+                files: {
+                  small: withUrl(screenshot.files.small) as SmallScreenshotFile,
+                  medium: withUrl(
+                    screenshot.files.medium
+                  ) as MediumScreenshotFile,
+                  large: withUrl(screenshot.files.large) as LargeScreenshotFile,
+                  original: withUrl(
+                    screenshot.files.original
+                  ) as OriginalScreenshotFile,
+                },
+              };
+            }
+          ),
         };
       })
     );

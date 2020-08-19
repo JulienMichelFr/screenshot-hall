@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { ScreenshotRepository } from '../../repositories/screenshot.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ScreenshotEntity } from '../../entities/screenshot.entity';
-import { CreateScreenshotDTO } from '@screenshot-hall/models';
+import { CreateScreenshotDTO, ScreenshotFiles } from '@screenshot-hall/models';
 import { UserEntity } from '../../../auth/entities/user.entity';
 import { GalleryRepository } from '../../../gallery/repositories/gallery.repository';
 import { IFile } from '../../../../utils/interfaces/file';
@@ -35,15 +35,15 @@ export class ScreenshotService {
       throw new NotFoundException('Gallery not found');
     }
 
-    createScreenshotDTO.fileId = await this.uploaderService.uploadScreenshot(
+    const files: ScreenshotFiles = await this.uploaderService.uploadScreenshot(
       user.id,
       file
     );
-    createScreenshotDTO.mimetype = file.mimetype;
 
     return this.screenshotRepository.createScreenshot(
       createScreenshotDTO,
       gallery,
+      files,
       user
     );
   }

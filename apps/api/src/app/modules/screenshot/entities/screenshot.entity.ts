@@ -3,6 +3,7 @@ import { IScreenshot } from '@screenshot-hall/models';
 import { UserEntity } from '../../auth/entities/user.entity';
 import { GalleryEntity } from '../../gallery/entities/gallery.entity';
 import { DefaultEntity } from '../../../utils/database/default-entity';
+import { ScreenshotFiles } from '../../../../../../../libs/models/src/lib/screenshot/interfaces/screenshot-file.interface';
 
 @Entity()
 export class ScreenshotEntity extends DefaultEntity implements IScreenshot {
@@ -28,8 +29,7 @@ export class ScreenshotEntity extends DefaultEntity implements IScreenshot {
 
   @Column()
   userId: string;
-  @Column()
-  file: string;
-  @Column()
-  mimetype: string;
+
+  @Column({ type: 'json' })
+  files: ScreenshotFiles;
 }

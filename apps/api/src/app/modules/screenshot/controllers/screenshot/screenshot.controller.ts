@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Query,
   Response,
   UploadedFile,
   UseGuards,
@@ -14,7 +15,7 @@ import {
 } from '@nestjs/common';
 import { ScreenshotService } from '../../services/screenshot/screenshot.service';
 import { AuthGuard } from '@nestjs/passport';
-import { CreateScreenshotDTO } from '@screenshot-hall/models';
+import { CreateScreenshotDTO, ScreenshotSize } from '@screenshot-hall/models';
 import { GetUser } from '../../../auth/decorators/get-user.decorator';
 import { UserEntity } from '../../../auth/entities/user.entity';
 import { ScreenshotEntity } from '../../entities/screenshot.entity';
@@ -55,12 +56,17 @@ export class ScreenshotController {
   }
 
   @Get('/:id/download')
-  async download(@Param('id') id: string, @Response() response: EResponse) {
+  async download(
+    @Param('id') id: string,
+    @Query('size') size: ScreenshotSize = ScreenshotSize.ORIGINAL,
+    @Response() response: EResponse
+  ) {
     const screenshot = await this.screenshotService.findOne(id);
-    response.append('content-type', screenshot.mimetype);
+    const img = screenshot.files[size];
+    response.append('content-type', img.mimetype);
     const file = await this.dataService.downloadScreenshot(
       screenshot.userId,
-      screenshot.file
+      img.filename
     );
     file.pipe(response);
   }

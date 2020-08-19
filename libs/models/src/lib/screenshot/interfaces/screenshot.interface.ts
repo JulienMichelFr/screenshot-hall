@@ -1,5 +1,6 @@
 import { IGallery, IUser } from '@screenshot-hall/models';
-import { BaseModel } from '../../utils/base-model';
+import { BaseModel } from '../../..';
+import { ScreenshotFiles } from './screenshot-file.interface';
 
 export interface IScreenshot extends BaseModel {
   name: string;
@@ -7,7 +8,5 @@ export interface IScreenshot extends BaseModel {
   galleryId: string;
   user: IUser;
   userId: string;
-  file: string;
-  mimetype: string;
-  url?: string;
+  files: ScreenshotFiles;
 }
