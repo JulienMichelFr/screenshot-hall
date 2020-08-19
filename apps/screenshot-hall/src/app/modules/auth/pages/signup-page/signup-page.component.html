@@ -1,0 +1,54 @@
+<form #registerForm="ngForm" (ngSubmit)="submit(registerForm.value)">
+  <div class="card">
+    <div class="card-heading">
+      <h2>Sign Up</h2>
+    </div>
+    <div class="card-content">
+      <div class="flex">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            type="text"
+            name="username"
+            matInput
+            required
+            [(ngModel)]="displayName"
+            minlength="3"
+            placeholder="John Doe"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="email" name="email" matInput required [(ngModel)]="email" placeholder="john@doe.com" />
+        </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input type="password" name="password" matInput required [(ngModel)]="password" minlength="8" />
+        </mat-form-field>
+        <mat-form-field fxFlex="1 1 auto">
+          <mat-label>Confirm password</mat-label>
+          <input
+            type="password"
+            name="confirmPassword"
+            [screenshotHallConfirmPassword]="password"
+            matInput
+            required
+            [(ngModel)]="confirmPassword"
+            minlength="8"
+          />
+        </mat-form-field>
+      </div>
+      <div *ngIf="error">
+        <p class="mat-error">{{ error | authError }}</p>
+      </div>
+    </div>
+    <div class="card-actions">
+      <a mat-button routerLink="/auth/signin">Sign in</a>
+      <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid || loading">
+        Sign up
+      </button>
+    </div>
+  </div>
+</form>

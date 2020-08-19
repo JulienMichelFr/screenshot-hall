@@ -1,6 +1,18 @@
-import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+  UseInterceptors,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { AuthService } from '../../services/auth/auth.service';
-import { SignInDTO, SignUpDTO } from '@screenshot-hall/models';
+import { IUser, SignInDTO, SignUpDTO } from '@screenshot-hall/models';
+import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from '../../decorators/get-user.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -16,5 +28,12 @@ export class AuthController {
     @Body(ValidationPipe) loginDTO: SignInDTO
   ): Promise<{ accessToken: string }> {
     return this.authService.signIn(loginDTO);
+  }
+
+  @UseInterceptors(ClassSerializerInterceptor)
+  @UseGuards(AuthGuard())
+  @Get('/profile')
+  async profile(@GetUser() user: IUser): Promise<IUser> {
+    return user;
   }
 }

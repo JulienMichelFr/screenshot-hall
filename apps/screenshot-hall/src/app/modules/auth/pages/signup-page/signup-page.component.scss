@@ -1,0 +1,53 @@
+@import "~apps/screenshot-hall/src/theme";
+
+:host {
+  width: 100%;
+}
+
+form {
+  width: 100%;
+  height: 100%;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+
+  & > * {
+    flex: 1 1 auto;
+  }
+}
+
+.card {
+  $padding: 10px 10px;
+  @extend .mat-elevation-z2;
+  border-radius: 5px;
+
+  .card-heading {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: $padding;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    * {
+      margin: 0;
+      font-weight: 300;
+    }
+  }
+
+  .card-content {
+    padding: $padding;
+  }
+
+  .card-actions {
+    padding: $padding;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+
+    button:last-of-type {
+      margin-right: 0;
+    }
+  }
+}

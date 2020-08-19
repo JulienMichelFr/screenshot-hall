@@ -1,0 +1,52 @@
+@import "~@angular/material/theming";
+:host {
+  width: 300px;
+  height: 300px;
+  display: inline-block;
+}
+
+.card {
+  @include mat-elevation(0);
+  @include mat-elevation-transition;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  border-radius: 15px;
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    @include mat-elevation(2);
+    .title, .footer {
+      opacity: 1;
+    }
+  }
+}
+
+.title, .footer {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  //opacity: 0;
+  opacity: 1;
+  background-color: rgba(#000, 0.3);
+  padding: 10px;
+  color: #fff;
+  transition: opacity 0.3s ease;
+}
+
+.footer {
+  text-align: end;
+}
+
+.game {
+  text-align: right;
+  text-overflow: ellipsis;
+}
+
+.platform {
+  padding: 0 5px;
+  border-radius: 2px;
+}

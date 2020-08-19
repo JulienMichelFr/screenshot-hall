@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <a routerLink="/galleries" mat-button>Screenshot Hall</a>
+  <div class="spacer"></div>
+  <div *ngIf="!(loggedIn$ | async)">
+    <a routerLink="/auth/login" mat-button>Login</a>
+    <a routerLink="/auth/signup" mat-button>Signup</a>
+  </div>
+  <div *ngIf="profile$ | async as profile">
+    <a mat-button>{{profile.username}}</a>
+  </div>
+
+</mat-toolbar>
