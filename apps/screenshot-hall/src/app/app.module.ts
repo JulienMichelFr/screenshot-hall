@@ -14,6 +14,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TOKEN_KEY } from '../utils/constantes';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, NotFoundComponent],
@@ -34,6 +35,7 @@ import { MatButtonModule } from '@angular/material/button';
     AuthModule,
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
   ],
   providers: [
     {

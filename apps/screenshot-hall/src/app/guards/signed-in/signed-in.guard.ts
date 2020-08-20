@@ -28,7 +28,11 @@ export class SignedInGuard implements CanActivate {
       take(1),
       map((loggedIn: boolean) => {
         if (loggedIn) {
-          return true;
+          if (!this.auth.isExpired) {
+            return true;
+          } else {
+            this.auth.signOut();
+          }
         }
         return this.router.parseUrl('/auth/signin');
       })

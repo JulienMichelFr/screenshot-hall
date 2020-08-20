@@ -13,6 +13,8 @@ export class GalleryRepository extends Repository<GalleryEntity> {
     const gallery = new GalleryEntity();
     gallery.name = createGalleryDTO.name;
     gallery.user = user;
+    gallery.game = createGalleryDTO.game;
+    gallery.platform = createGalleryDTO.platform;
 
     await gallery.save();
 

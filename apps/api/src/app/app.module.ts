@@ -9,6 +9,7 @@ import { UserEntity } from './modules/auth/entities/user.entity';
 import { ScreenshotModule } from './modules/screenshot/screenshot.module';
 import { ScreenshotEntity } from './modules/screenshot/entities/screenshot.entity';
 import { DataModule } from './modules/data/data.module';
+import { IgdbModule } from './modules/igdb/igdb.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { DataModule } from './modules/data/data.module';
     }),
     ScreenshotModule,
     DataModule,
+    IgdbModule,
   ],
   controllers: [],
   providers: [],

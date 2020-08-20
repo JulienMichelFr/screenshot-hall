@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { IUser, SignInDTO, SignUpDTO } from '@screenshot-hall/models';
+import {
+  IUser,
+  JwtPayload,
+  SignInDTO,
+  SignUpDTO,
+} from '@screenshot-hall/models';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, shareReplay, switchMap, take } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import AppConfig from '../../../../../configuration/app.config';
 import { TOKEN_KEY } from '../../../../../utils/constantes';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +19,7 @@ import { TOKEN_KEY } from '../../../../../utils/constantes';
 export class AuthService {
   private _token: BehaviorSubject<string | null> = new BehaviorSubject<
     string | null
-  >(localStorage.getItem(TOKEN_KEY));
+  >(this.token ? (this.isExpired ? null : this.token) : null);
 
   private readonly endpoint = `${this.config.api}/api/auth`;
 
@@ -34,10 +40,36 @@ export class AuthService {
     })
   );
 
+  public get token(): string | null {
+    return this.jwtService.tokenGetter();
+  }
+
+  public decoded(): (JwtPayload & { exp: number }) | null {
+    if (!this.token) {
+      return null;
+    }
+    return this.jwtService.decodeToken();
+  }
+
+  public get expireAt(): Date | null {
+    if (!this.token) {
+      return null;
+    }
+    return this.jwtService.getTokenExpirationDate();
+  }
+
+  public get isExpired(): boolean {
+    if (!this.token) {
+      return true;
+    }
+    return this.jwtService.isTokenExpired();
+  }
+
   constructor(
     private router: Router,
     private http: HttpClient,
-    private config: AppConfig
+    private config: AppConfig,
+    private jwtService: JwtHelperService
   ) {}
 
   public signUp(user: SignUpDTO): Observable<any> {
@@ -52,9 +84,8 @@ export class AuthService {
     return this.router.navigate(['/galleries']);
   }
 
-  public signOut(): Promise<boolean> {
+  public signOut(): void {
     localStorage.removeItem(TOKEN_KEY);
-    return this.router.navigate(['/auth/login']);
   }
 
   public profile(): Observable<IUser> {

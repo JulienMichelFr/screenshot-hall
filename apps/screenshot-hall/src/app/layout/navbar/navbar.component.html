@@ -6,6 +6,7 @@
     <a routerLink="/auth/signup" mat-button>Sign up</a>
   </div>
   <div *ngIf="profile$ | async as profile">
+    <a mat-icon-button routerLink="/galleries/new"><mat-icon>add</mat-icon></a>
     <a mat-button>{{profile.username}}</a>
   </div>
 

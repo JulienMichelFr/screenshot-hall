@@ -9,12 +9,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CreateGalleryPageComponent } from './pages/create-gallery-page/create-gallery-page.component';
 import { CreateGalleryComponent } from './components/create-gallery/create-gallery.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { GalleryDetailPageComponent } from './pages/gallery-detail-page/gallery-detail-page.component';
 import { GalleryResolver } from './resolvers/gallery/gallery.resolver';
 import { GalleryDetailComponent } from './components/gallery-detail/gallery-detail.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SearchGameComponent } from './components/search-game/search-game.component';
+import { MatSelectModule } from '@angular/material/select';
+import { PlatformModule } from '../platform/platform.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +29,7 @@ import { GalleryDetailComponent } from './components/gallery-detail/gallery-deta
     CreateGalleryComponent,
     GalleryDetailPageComponent,
     GalleryDetailComponent,
+    SearchGameComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +41,11 @@ import { GalleryDetailComponent } from './components/gallery-detail/gallery-deta
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatAutocompleteModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    PlatformModule,
   ],
   providers: [GalleryResolver],
   exports: [GalleryListPageComponent, GalleryCardComponent],

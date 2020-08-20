@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { CreateGalleryDTO } from '@screenshot-hall/models';
+import { CreateGalleryDTO, IGame } from '@screenshot-hall/models';
 
 @Component({
   selector: 'screenshot-hall-create-gallery',
@@ -15,6 +15,7 @@ import { CreateGalleryDTO } from '@screenshot-hall/models';
 })
 export class CreateGalleryComponent implements OnInit {
   gallery = new CreateGalleryDTO();
+  game: any;
 
   @Output() create: EventEmitter<CreateGalleryDTO> = new EventEmitter<
     CreateGalleryDTO
@@ -23,4 +24,10 @@ export class CreateGalleryComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  setName(game: IGame): void {
+    if (!this.gallery.name?.length) {
+      this.gallery.name = game?.name;
+    }
+  }
 }

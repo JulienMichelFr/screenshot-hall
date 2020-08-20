@@ -1,0 +1,15 @@
+<mat-form-field [formGroup]="form" style="width: 100%">
+  <input [required]="required" matInput placeholder="Search a game" [matAutocomplete]="auto" formControlName="search">
+  <mat-icon (click)="reset()" matSuffix *ngIf="form.get('search').value?.id" >close</mat-icon>
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
+    <ng-container *ngIf="!isLoading">
+      <mat-option *ngFor="let game of games$ | async" [value]="game">
+        {{ game.name }}
+        <span style="display: inline-flex; gap: 5px;">
+          <screenshot-hall-platform-pill *ngFor="let platform of game.platforms" [platform]="platform"></screenshot-hall-platform-pill>
+        </span>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>
+</mat-form-field>

@@ -5,4 +5,11 @@
   & > * {
     flex: 1 1 auto;
   }
+
+  &.gap-5 {
+    gap: 5px;
+  }
+  &.gap-10 {
+    gap: 10px;
+  }
 }

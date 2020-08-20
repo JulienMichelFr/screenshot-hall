@@ -2,6 +2,15 @@
   <mat-card>
     <mat-card-title>New gallery</mat-card-title>
     <mat-card-content>
+      <div class="row gap-10">
+        <screenshot-hall-search-game required="" [(ngModel)]="gallery.game" (ngModelChange)="setName($event)" name="game"></screenshot-hall-search-game>
+        <mat-form-field>
+          <mat-label>Platform</mat-label>
+          <mat-select [(ngModel)]="gallery.platform" name="platform" required [disabled]="!gallery.game?.platforms?.length">
+            <mat-option *ngFor="let platform of gallery.game?.platforms" [value]="platform">{{platform.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
       <div class="row">
         <mat-form-field>
           <mat-label>Name</mat-label>
