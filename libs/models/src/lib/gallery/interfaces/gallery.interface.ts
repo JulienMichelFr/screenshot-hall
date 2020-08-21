@@ -10,4 +10,5 @@ export interface IGallery extends BaseModel {
   userId: string;
   game: IGame;
   platform: IPlatform;
+  cover?: IScreenshot;
 }

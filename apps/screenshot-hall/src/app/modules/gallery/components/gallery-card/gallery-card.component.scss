@@ -17,6 +17,7 @@
   border-radius: 15px;
   cursor: pointer;
   user-select: none;
+  overflow: hidden;
   &:hover {
     @include mat-elevation(2);
     .title, .footer {
@@ -29,7 +30,6 @@
   display: inline-flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  //opacity: 0;
   opacity: 1;
   background-color: rgba(#000, 0.3);
   padding: 10px;

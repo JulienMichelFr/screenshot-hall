@@ -1,7 +1,7 @@
 <h2>Latest galleries</h2>
 <div class="list">
   <a [routerLink]="['/galleries', gallery.id]" *ngFor="let gallery of galleries$ | async">
-    <screenshot-hall-gallery  [gallery]="gallery"></screenshot-hall-gallery>
+    <screenshot-hall-gallery [gallery]="gallery"></screenshot-hall-gallery>
   </a>
 
 </div>

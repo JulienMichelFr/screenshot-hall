@@ -1,5 +1,10 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm/index';
-import { IGallery, IGame, IPlatform } from '@screenshot-hall/models';
+import {
+  IGallery,
+  IGame,
+  IPlatform,
+  IScreenshot,
+} from '@screenshot-hall/models';
 import { UserEntity } from './user.entity';
 import { ScreenshotEntity } from './screenshot.entity';
 import { DefaultEntity } from '../../../utils/database/default-entity';
@@ -30,4 +35,6 @@ export class GalleryEntity extends DefaultEntity implements IGallery {
 
   @Column()
   userId: string;
+
+  cover?: IScreenshot;
 }

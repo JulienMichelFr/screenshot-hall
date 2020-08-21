@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-  EventEmitter,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IGallery } from '@screenshot-hall/models';
 
 @Component({
@@ -14,10 +7,12 @@ import { IGallery } from '@screenshot-hall/models';
   styleUrls: ['./gallery-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GalleryCardComponent implements OnInit {
+export class GalleryCardComponent {
   @Input() gallery: IGallery;
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  get cover(): string {
+    const res = `url('${this.gallery.cover.files.small.url}')`;
+    console.log({ res });
+    return res;
+  }
 }

@@ -13,6 +13,7 @@ import {
   SmallScreenshotFile,
 } from '@screenshot-hall/models';
 import { map } from 'rxjs/operators';
+import { ScreenshotService } from '../screenshot/screenshot.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,10 +21,21 @@ import { map } from 'rxjs/operators';
 export class GalleryService {
   private readonly endpoint = `${this.config.api}/api/galleries`;
 
-  constructor(private http: HttpClient, private config: AppConfig) {}
+  constructor(
+    private http: HttpClient,
+    private config: AppConfig,
+    private screenshotService: ScreenshotService
+  ) {}
 
   public getGalleries(): Observable<IGallery[]> {
-    return this.http.get<IGallery[]>(this.endpoint);
+    return this.http.get<IGallery[]>(this.endpoint).pipe(
+      map((galleries: IGallery[]) => {
+        return galleries.map((gallery) => {
+          gallery.cover = this.screenshotService.setUrls(gallery.cover);
+          return gallery;
+        });
+      })
+    );
   }
 
   public getGalleryById(id: string): Observable<IGallery> {
@@ -33,25 +45,7 @@ export class GalleryService {
           ...gallery,
           screenshots: gallery.screenshots.map(
             (screenshot): IScreenshot => {
-              const withUrl = (screen: IScreenshotFile): IScreenshotFile => {
-                return {
-                  ...screen,
-                  url: `${this.config.api}/api/screenshots/${screenshot.id}/download?size=${screen.size}`,
-                };
-              };
-              return {
-                ...screenshot,
-                files: {
-                  small: withUrl(screenshot.files.small) as SmallScreenshotFile,
-                  medium: withUrl(
-                    screenshot.files.medium
-                  ) as MediumScreenshotFile,
-                  large: withUrl(screenshot.files.large) as LargeScreenshotFile,
-                  original: withUrl(
-                    screenshot.files.original
-                  ) as OriginalScreenshotFile,
-                },
-              };
+              return this.screenshotService.setUrls(screenshot);
             }
           ),
         };

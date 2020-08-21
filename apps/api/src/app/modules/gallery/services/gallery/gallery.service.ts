@@ -29,7 +29,13 @@ export class GalleryService {
   }
 
   async findAll(): Promise<GalleryEntity[]> {
-    return this.galleryRepository.findGalleries();
+    const galleries = await this.galleryRepository.findGalleries();
+    for await (const gallery of galleries) {
+      gallery.cover = await this.screenshotRepository.findOne({
+        galleryId: gallery.id,
+      });
+    }
+    return galleries;
   }
 
   async findById(id: string): Promise<GalleryEntity> {
