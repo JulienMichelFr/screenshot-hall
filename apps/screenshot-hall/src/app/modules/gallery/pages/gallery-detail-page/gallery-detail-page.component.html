@@ -1,1 +1,2 @@
 <screenshot-hall-gallery-detail [gallery]="gallery"></screenshot-hall-gallery-detail>
+<screenshot-hall-upload-screenshot *ngIf="isOwner$ | async" [gallery]="gallery"></screenshot-hall-upload-screenshot>

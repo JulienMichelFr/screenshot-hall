@@ -20,6 +20,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SearchGameComponent } from './components/search-game/search-game.component';
 import { MatSelectModule } from '@angular/material/select';
 import { PlatformModule } from '../platform/platform.module';
+import { UploadScreenshotComponent } from './components/upload-screenshot/upload-screenshot.component';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { PlatformModule } from '../platform/platform.module';
     GalleryDetailPageComponent,
     GalleryDetailComponent,
     SearchGameComponent,
+    UploadScreenshotComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +49,7 @@ import { PlatformModule } from '../platform/platform.module';
     ReactiveFormsModule,
     MatSelectModule,
     PlatformModule,
+    AngularFileUploaderModule,
   ],
   providers: [GalleryResolver],
   exports: [GalleryListPageComponent, GalleryCardComponent],
