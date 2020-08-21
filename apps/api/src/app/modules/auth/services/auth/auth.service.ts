@@ -1,5 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UserRepository } from '../../repositories/user.repository';
+import { UserRepository } from '../../../database/repositories/user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtPayload, SignInDTO, SignUpDTO } from '@screenshot-hall/models';
 import { JwtService } from '@nestjs/jwt';

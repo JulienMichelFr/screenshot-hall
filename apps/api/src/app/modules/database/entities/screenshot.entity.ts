@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne } from 'typeorm/index';
 import { IScreenshot } from '@screenshot-hall/models';
-import { UserEntity } from '../../auth/entities/user.entity';
-import { GalleryEntity } from '../../gallery/entities/gallery.entity';
+import { UserEntity } from './user.entity';
+import { GalleryEntity } from './gallery.entity';
 import { DefaultEntity } from '../../../utils/database/default-entity';
 import { ScreenshotFiles } from '../../../../../../../libs/models/src/lib/screenshot/interfaces/screenshot-file.interface';
 

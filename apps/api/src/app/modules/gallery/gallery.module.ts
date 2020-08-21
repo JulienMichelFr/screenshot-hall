@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '../auth/auth.module';
 import { GalleryService } from './services/gallery/gallery.service';
-import { GalleryRepository } from './repositories/gallery.repository';
 import { GalleryController } from './controllers/gallery/gallery.controller';
+import { DatabaseModule } from '../database/database.module';
+import { DataModule } from '../data/data.module';
 
 @Module({
-  imports: [AuthModule, TypeOrmModule.forFeature([GalleryRepository])],
+  imports: [AuthModule, DatabaseModule, DataModule],
   providers: [GalleryService],
   controllers: [GalleryController],
   exports: [],

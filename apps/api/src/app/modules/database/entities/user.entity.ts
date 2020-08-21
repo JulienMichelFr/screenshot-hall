@@ -8,11 +8,11 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { GalleryEntity } from '../../gallery/entities/gallery.entity';
+import { GalleryEntity } from './gallery.entity';
 import { OneToMany } from 'typeorm/index';
 import { Exclude } from 'class-transformer';
 import { IUser } from '@screenshot-hall/models';
-import { ScreenshotEntity } from '../../screenshot/entities/screenshot.entity';
+import { ScreenshotEntity } from './screenshot.entity';
 import { DefaultEntity } from '../../../utils/database/default-entity';
 
 @Entity()

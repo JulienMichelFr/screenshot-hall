@@ -2,19 +2,11 @@ import { Module } from '@nestjs/common';
 import { ScreenshotService } from './services/screenshot/screenshot.service';
 import { ScreenshotController } from './controllers/screenshot/screenshot.controller';
 import { AuthModule } from '../auth/auth.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ScreenshotRepository } from './repositories/screenshot.repository';
-import { GalleryModule } from '../gallery/gallery.module';
-import { GalleryRepository } from '../gallery/repositories/gallery.repository';
 import { DataModule } from '../data/data.module';
+import { DatabaseModule } from '../database/database.module';
 
 @Module({
-  imports: [
-    AuthModule,
-    TypeOrmModule.forFeature([ScreenshotRepository, GalleryRepository]),
-    GalleryModule,
-    DataModule,
-  ],
+  imports: [AuthModule, DataModule, DatabaseModule],
   providers: [ScreenshotService],
   controllers: [ScreenshotController],
 })

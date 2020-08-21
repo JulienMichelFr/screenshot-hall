@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm/index';
 import { GalleryEntity } from '../entities/gallery.entity';
 import { CreateGalleryDTO } from '@screenshot-hall/models';
-import { UserEntity } from '../../auth/entities/user.entity';
+import { UserEntity } from '../entities/user.entity';
 import { NotFoundException } from '@nestjs/common';
 
 @EntityRepository(GalleryEntity)
