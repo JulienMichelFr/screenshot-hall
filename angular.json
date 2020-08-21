@@ -28,7 +28,12 @@
               "apps/screenshot-hall/src/favicon.ico",
               "apps/screenshot-hall/src/assets"
             ],
-            "styles": ["apps/screenshot-hall/src/styles.scss"],
+            "styles": [
+              "apps/screenshot-hall/src/styles.scss",
+              "node_modules/@uppy/core/dist/style.css",
+              "node_modules/@uppy/dashboard/dist/style.css",
+              "node_modules/@uppy/status-bar/dist/style.css"
+            ],
             "scripts": []
           },
           "configurations": {

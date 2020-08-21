@@ -1,7 +1,5 @@
-<h1>{{gallery.name}}</h1>
+<h1>{{gallery.name}} by {{gallery.user.username}}</h1>
 
-<div *ngFor="let screen of gallery.screenshots">
-  <img [src]="screen.files.medium.url">
-  <p>{{screen.name}}</p>
+<div class="screenshot-container">
+  <img alt="Game screenshot" *ngFor="let screen of gallery.screenshots" [src]="screen.files.medium.url" width="100%">
 </div>
-

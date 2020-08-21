@@ -50,7 +50,7 @@ export class GalleryController {
 
   @UseGuards(AuthGuard())
   @UseInterceptors(
-    FilesInterceptor('file', 10 /*{ limits: { fileSize: MAX_FILE_SIZE } }*/)
+    FilesInterceptor('files', 10 /*{ limits: { fileSize: MAX_FILE_SIZE } }*/)
   )
   @Post('/:id/screenshots')
   async uploadScreenshot(
