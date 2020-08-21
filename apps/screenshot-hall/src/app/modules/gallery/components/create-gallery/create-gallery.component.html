@@ -19,6 +19,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions align="end">
+      <button mat-button type="button" (click)="cancel.emit()">Cancel</button>
       <button mat-raised-button color="primary" [disabled]="galleryForm.invalid" type="submit" (click)="create.emit(gallery)">
         <mat-icon>save</mat-icon>
         Create

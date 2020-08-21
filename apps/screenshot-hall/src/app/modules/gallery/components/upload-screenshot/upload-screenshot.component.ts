@@ -24,7 +24,7 @@ export class UploadScreenshotComponent implements OnInit, OnChanges {
   }
 
   uploaderConfig: AngularFileUploaderConfig = {
-    multiple: false,
+    multiple: true,
     formatsAllowed: '.jpg,.png,.jpeg',
     uploadAPI: {
       url: this.endpoint,

@@ -21,6 +21,8 @@ export class CreateGalleryComponent implements OnInit {
     CreateGalleryDTO
   >();
 
+  @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
+
   constructor() {}
 
   ngOnInit(): void {}

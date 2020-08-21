@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   UploadedFile,
+  UploadedFiles,
   UseGuards,
   UseInterceptors,
   UsePipes,
@@ -18,7 +19,7 @@ import { CreateGalleryDTO } from '@screenshot-hall/models';
 import { GetUser } from '../../../auth/decorators/get-user.decorator';
 import { UserEntity } from '../../../database/entities/user.entity';
 import { GalleryEntity } from '../../../database/entities/gallery.entity';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { MAX_FILE_SIZE } from '../../../../../utils/contantes';
 import { IFile } from '../../../../utils/interfaces/file';
 
@@ -49,15 +50,17 @@ export class GalleryController {
 
   @UseGuards(AuthGuard())
   @UseInterceptors(
-    FileInterceptor('file', { limits: { fileSize: MAX_FILE_SIZE } })
+    FilesInterceptor('file', 10 /*{ limits: { fileSize: MAX_FILE_SIZE } }*/)
   )
   @Post('/:id/screenshots')
-  uploadScreenshot(
-    @UploadedFile() file: IFile,
+  async uploadScreenshot(
+    @UploadedFiles() files: IFile[],
     @GetUser() user: UserEntity,
     @Param('id') id: string
   ) {
-    return this.galleryService.createScreenshot(id, file, user);
+    return await Promise.all(
+      files.map((file) => this.galleryService.createScreenshot(id, file, user))
+    );
   }
 
   @UseGuards(AuthGuard())
