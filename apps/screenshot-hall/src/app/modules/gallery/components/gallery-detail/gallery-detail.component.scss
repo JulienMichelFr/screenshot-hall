@@ -4,6 +4,20 @@
   gap: 5px;
 }
 
+.screenshot {
+  position: relative;
+  padding: 0;
+
+
+  button {
+    $position: -10px;
+
+    position: absolute;
+    top: $position;
+    right: $position;
+  }
+}
+
 h1 {
   text-align: center;
 }

@@ -8,12 +8,16 @@ import {
   OriginalScreenshotFile,
   SmallScreenshotFile,
 } from '@screenshot-hall/models';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ScreenshotService {
-  constructor(private config: AppConfig) {}
+  private readonly endpoint = `${this.config.api}/api/screenshots`;
+
+  constructor(private config: AppConfig, private http: HttpClient) {}
 
   setUrls(screenshot: IScreenshot): IScreenshot {
     const withUrl = (screen: IScreenshotFile): IScreenshotFile => {
@@ -31,5 +35,9 @@ export class ScreenshotService {
         original: withUrl(screenshot.files.original) as OriginalScreenshotFile,
       },
     };
+  }
+
+  removeScreenshot(screenshot: IScreenshot): Observable<void> {
+    return this.http.delete<void>(`${this.endpoint}/${screenshot.id}`);
   }
 }

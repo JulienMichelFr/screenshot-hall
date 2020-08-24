@@ -1,5 +1,10 @@
 <h1>{{gallery.name}} by {{gallery.user.username}}</h1>
 
 <div class="screenshot-container">
-  <img alt="Game screenshot" *ngFor="let screen of gallery.screenshots" [src]="screen.files.medium.url" width="100%">
+  <div *ngFor="let screen of gallery.screenshots" class="screenshot">
+    <img alt="Game screenshot" [src]="screen.files.medium.url" width="100%">
+    <button mat-icon-button color="warn" *ngIf="isOwner" (click)="removeScreenshot.emit(screen)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 </div>

@@ -28,12 +28,16 @@ export class GalleryRepository extends Repository<GalleryEntity> {
   }
 
   async findGallyById(id: string): Promise<GalleryEntity> {
-    return this.findOneOrFail(
+    const gallery = await this.findOneOrFail(
       {
         id,
       },
       { relations: ['user', 'screenshots'] }
     );
+
+    gallery.screenshots = gallery.screenshots.filter((s) => !s.deletedAt);
+
+    return gallery;
   }
 
   async removeGallery(galleryId: string, user: UserEntity) {

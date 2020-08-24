@@ -3,6 +3,7 @@ import { ScreenshotEntity } from '../entities/screenshot.entity';
 import { ScreenshotFiles } from '@screenshot-hall/models';
 import { UserEntity } from '../entities/user.entity';
 import { GalleryEntity } from '../entities/gallery.entity';
+import { NotFoundException } from '@nestjs/common';
 
 @EntityRepository(ScreenshotEntity)
 export class ScreenshotRepository extends Repository<ScreenshotEntity> {
@@ -25,5 +26,15 @@ export class ScreenshotRepository extends Repository<ScreenshotEntity> {
     return this.find({
       relations: ['user', 'gallery'],
     });
+  }
+
+  async removeOne(id: string, user: UserEntity): Promise<void> {
+    let screenshot: ScreenshotEntity;
+    try {
+      screenshot = await this.findOneOrFail({ id, userId: user.id });
+    } catch (e) {
+      throw new NotFoundException('Screenshot not found');
+    }
+    await screenshot.softRemove();
   }
 }

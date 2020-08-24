@@ -21,6 +21,8 @@ import { SearchGameComponent } from './components/search-game/search-game.compon
 import { MatSelectModule } from '@angular/material/select';
 import { PlatformModule } from '../platform/platform.module';
 import { UploadScreenshotComponent } from './components/upload-screenshot/upload-screenshot.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDeleteDialogComponent } from './components/confirm-delete-dialog/confirm-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { UploadScreenshotComponent } from './components/upload-screenshot/upload
     GalleryDetailComponent,
     SearchGameComponent,
     UploadScreenshotComponent,
+    ConfirmDeleteDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +51,7 @@ import { UploadScreenshotComponent } from './components/upload-screenshot/upload
     ReactiveFormsModule,
     MatSelectModule,
     PlatformModule,
+    MatDialogModule,
   ],
   providers: [GalleryResolver],
   exports: [GalleryListPageComponent, GalleryCardComponent],
