@@ -7,7 +7,12 @@
   </div>
   <div *ngIf="profile$ | async as profile">
     <a mat-icon-button routerLink="/galleries/new"><mat-icon>add</mat-icon></a>
-    <a mat-button>{{profile.username}}</a>
+    <button mat-button [matMenuTriggerFor]="userMenu">{{profile.username}}</button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item  (click)="signOut()">
+        <span>Sign out</span>
+      </button>
+    </mat-menu>
   </div>
 
 </mat-toolbar>

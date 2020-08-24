@@ -87,6 +87,7 @@ export class AuthService {
 
   public signOut(): void {
     localStorage.removeItem(TOKEN_KEY);
+    this._token.next(null);
   }
 
   public profile(): Observable<IUser> {
