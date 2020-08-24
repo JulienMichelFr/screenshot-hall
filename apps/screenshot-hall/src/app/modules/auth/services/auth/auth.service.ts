@@ -81,6 +81,7 @@ export class AuthService {
       .post<{ accessToken: string }>(`${this.endpoint}/signin`, credentials)
       .toPromise();
     localStorage.setItem(TOKEN_KEY, accessToken);
+    this._token.next(accessToken);
     return this.router.navigate(['/galleries']);
   }
 
