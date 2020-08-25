@@ -23,6 +23,7 @@ import { PlatformModule } from '../platform/platform.module';
 import { UploadScreenshotComponent } from './components/upload-screenshot/upload-screenshot.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDeleteDialogComponent } from './components/confirm-delete-dialog/confirm-delete-dialog.component';
+import { LazyImgDirective } from './directives/lazy-img/lazy-img.directive';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ConfirmDeleteDialogComponent } from './components/confirm-delete-dialog
     SearchGameComponent,
     UploadScreenshotComponent,
     ConfirmDeleteDialogComponent,
+    LazyImgDirective,
   ],
   imports: [
     CommonModule,

@@ -26,7 +26,8 @@
             "aot": true,
             "assets": [
               "apps/screenshot-hall/src/favicon.ico",
-              "apps/screenshot-hall/src/assets"
+              "apps/screenshot-hall/src/assets",
+              "apps/screenshot-hall/src/manifest.webmanifest"
             ],
             "styles": [
               "apps/screenshot-hall/src/styles.scss",
@@ -63,7 +64,9 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/screenshot-hall/ngsw-config.json"
             }
           }
         },

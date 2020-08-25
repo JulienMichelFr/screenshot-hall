@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UpdateService } from './services/update/update.service';
 
 @Component({
   selector: 'screenshot-hall-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private updateService: UpdateService) {}
 }

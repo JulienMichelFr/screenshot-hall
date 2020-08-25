@@ -41,6 +41,7 @@
     "@angular/platform-browser": "^10.0.0",
     "@angular/platform-browser-dynamic": "^10.0.0",
     "@angular/router": "^10.0.0",
+    "@angular/service-worker": "^10.0.0",
     "@auth0/angular-jwt": "^5.0.1",
     "@database01/nest-config": "^1.0.0",
     "@nestjs/common": "^7.0.0",
