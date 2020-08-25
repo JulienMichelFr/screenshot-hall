@@ -8,9 +8,8 @@ describe('PlatformPillComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlatformPillComponent ]
-    })
-    .compileComponents();
+      declarations: [PlatformPillComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

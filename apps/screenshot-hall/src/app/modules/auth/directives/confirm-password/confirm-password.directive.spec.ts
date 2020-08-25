@@ -23,6 +23,8 @@ describe('ConfirmPasswordDirective', () => {
   it('should return error when password mismatch', () => {
     directive.value = 'my-password';
     control.setValue('my-password1');
-    expect(directive.validate(control)).toEqual({ passwordMismatch: { value: 'my-password1' } });
+    expect(directive.validate(control)).toEqual({
+      passwordMismatch: { value: 'my-password1' },
+    });
   });
 });

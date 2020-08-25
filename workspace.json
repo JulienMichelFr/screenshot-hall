@@ -4,9 +4,7 @@
       "config": {
         "builder": "@nrwl/workspace:run-commands",
         "options": {
-          "commands": [
-            "ts-node "
-          ]
+          "commands": ["ts-node "]
         }
       }
     }

@@ -1,12 +1,19 @@
 <div class="title">
-  <h1>{{gallery.name}} by {{gallery.user.username}}</h1>
-  <button (click)="removeGallery.emit(gallery)" mat-icon-button><mat-icon color="warn" *ngIf="isOwner">delete</mat-icon></button>
+  <h1>{{ gallery.name }} by {{ gallery.user.username }}</h1>
+  <button (click)="removeGallery.emit(gallery)" mat-icon-button>
+    <mat-icon color="warn" *ngIf="isOwner">delete</mat-icon>
+  </button>
 </div>
 
 <div class="screenshot-container">
   <div *ngFor="let screen of screenshots" class="screenshot">
-    <img alt="Game screenshot" [src]="screen.files.medium.url" width="100%">
-    <button mat-icon-button color="warn" *ngIf="isOwner" (click)="removeScreenshot.emit(screen)">
+    <img alt="Game screenshot" [src]="screen.files.medium.url" width="100%" />
+    <button
+      mat-icon-button
+      color="warn"
+      *ngIf="isOwner"
+      (click)="removeScreenshot.emit(screen)"
+    >
       <mat-icon>delete</mat-icon>
     </button>
   </div>

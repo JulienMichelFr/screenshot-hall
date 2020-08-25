@@ -19,13 +19,27 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input type="email" name="email" matInput required [(ngModel)]="email" placeholder="john@doe.com" />
+          <input
+            type="email"
+            name="email"
+            matInput
+            required
+            [(ngModel)]="email"
+            placeholder="john@doe.com"
+          />
         </mat-form-field>
       </div>
       <div class="flex">
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input type="password" name="password" matInput required [(ngModel)]="password" minlength="8" />
+          <input
+            type="password"
+            name="password"
+            matInput
+            required
+            [(ngModel)]="password"
+            minlength="8"
+          />
         </mat-form-field>
         <mat-form-field fxFlex="1 1 auto">
           <mat-label>Confirm password</mat-label>
@@ -46,7 +60,12 @@
     </div>
     <div class="card-actions">
       <a mat-button routerLink="/auth/signin">Sign in</a>
-      <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid || loading">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="registerForm.invalid || loading"
+      >
         Sign up
       </button>
     </div>

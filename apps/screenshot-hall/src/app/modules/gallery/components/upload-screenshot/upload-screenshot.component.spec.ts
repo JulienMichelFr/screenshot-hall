@@ -8,9 +8,8 @@ describe('UploadScreenshotComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UploadScreenshotComponent ]
-    })
-    .compileComponents();
+      declarations: [UploadScreenshotComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

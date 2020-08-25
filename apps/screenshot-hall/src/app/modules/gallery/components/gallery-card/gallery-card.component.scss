@@ -1,4 +1,4 @@
-@import "~@angular/material/theming";
+@import '~@angular/material/theming';
 :host {
   width: 300px;
   height: 300px;
@@ -20,13 +20,15 @@
   overflow: hidden;
   &:hover {
     @include mat-elevation(2);
-    .title, .footer {
+    .title,
+    .footer {
       opacity: 1;
     }
   }
 }
 
-.title, .footer {
+.title,
+.footer {
   display: inline-flex;
   flex-flow: row nowrap;
   justify-content: space-between;

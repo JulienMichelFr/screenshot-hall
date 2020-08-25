@@ -7,13 +7,27 @@
       <div class="flex">
         <mat-form-field>
           <mat-label>Mail</mat-label>
-          <input type="email" name="email" matInput required [(ngModel)]="email" placeholder="john@doe.com" />
+          <input
+            type="email"
+            name="email"
+            matInput
+            required
+            [(ngModel)]="email"
+            placeholder="john@doe.com"
+          />
         </mat-form-field>
       </div>
       <div class="flex">
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input type="password" name="password" matInput required [(ngModel)]="password" minlength="8" />
+          <input
+            type="password"
+            name="password"
+            matInput
+            required
+            [(ngModel)]="password"
+            minlength="8"
+          />
         </mat-form-field>
       </div>
       <div *ngIf="error">
@@ -22,7 +36,14 @@
     </div>
     <div class="card-actions">
       <a mat-button routerLink="/auth/signup">Sign up</a>
-      <button mat-button color="primary" type="submit" [disabled]="loginForm.invalid || loading">Login</button>
+      <button
+        mat-button
+        color="primary"
+        type="submit"
+        [disabled]="loginForm.invalid || loading"
+      >
+        Login
+      </button>
     </div>
   </div>
 </form>
