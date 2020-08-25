@@ -4,6 +4,21 @@
   gap: 5px;
 }
 
+.title {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 5px;
+
+  h1 {
+    display: inline-block;
+    margin: 0;
+    width: auto;
+  }
+}
+
 .screenshot {
   position: relative;
   padding: 0;
@@ -16,8 +31,4 @@
     top: $position;
     right: $position;
   }
-}
-
-h1 {
-  text-align: center;
 }

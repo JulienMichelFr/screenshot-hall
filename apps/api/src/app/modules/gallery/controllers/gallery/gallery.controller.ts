@@ -22,11 +22,16 @@ import { GalleryEntity } from '../../../database/entities/gallery.entity';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { MAX_FILE_SIZE } from '../../../../../utils/contantes';
 import { IFile } from '../../../../utils/interfaces/file';
+import { ScreenshotEntity } from '../../../database/entities/screenshot.entity';
+import { ScreenshotService } from '../../../screenshot/services/screenshot/screenshot.service';
 
 @UseInterceptors(ClassSerializerInterceptor)
 @Controller('galleries')
 export class GalleryController {
-  constructor(private galleryService: GalleryService) {}
+  constructor(
+    private galleryService: GalleryService,
+    private screenshotService: ScreenshotService
+  ) {}
 
   @UseGuards(AuthGuard())
   @Post()
@@ -46,6 +51,13 @@ export class GalleryController {
   @Get('/:id')
   findGalleryById(@Param('id') id: string): Promise<GalleryEntity> {
     return this.galleryService.findById(id);
+  }
+
+  @Get('/:id/screenshots')
+  findScreenshotByGalleryId(
+    @Param('id') id: string
+  ): Promise<ScreenshotEntity[]> {
+    return this.screenshotService.findByGallery(id);
   }
 
   @UseGuards(AuthGuard())

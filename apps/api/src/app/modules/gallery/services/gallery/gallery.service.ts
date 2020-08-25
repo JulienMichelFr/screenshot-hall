@@ -1,7 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { GalleryRepository } from '../../../database/repositories/gallery.repository';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateGalleryDTO, ScreenshotFiles } from '@screenshot-hall/models';
+import {
+  CreateGalleryDTO,
+  IScreenshot,
+  ScreenshotFiles,
+} from '@screenshot-hall/models';
 import { UserEntity } from '../../../database/entities/user.entity';
 import { GalleryEntity } from '../../../database/entities/gallery.entity';
 import { IFile } from '../../../../utils/interfaces/file';

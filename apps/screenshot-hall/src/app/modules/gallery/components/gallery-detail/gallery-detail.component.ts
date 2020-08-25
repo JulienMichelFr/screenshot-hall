@@ -8,10 +8,15 @@ import { IGallery, IScreenshot } from '@screenshot-hall/models';
 })
 export class GalleryDetailComponent {
   @Input() gallery: IGallery;
+  @Input() screenshots: IScreenshot[];
   @Input() isOwner = false;
 
   @Output() removeScreenshot: EventEmitter<IScreenshot> = new EventEmitter<
     IScreenshot
+  >();
+
+  @Output() removeGallery: EventEmitter<IGallery> = new EventEmitter<
+    IGallery
   >();
 
   constructor() {}

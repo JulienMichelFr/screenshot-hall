@@ -1,5 +1,7 @@
 <div class="row">
-  <screenshot-hall-gallery-detail [gallery]="gallery" [isOwner]="isOwner$ | async" (removeScreenshot)="removeScreenshot($event)"></screenshot-hall-gallery-detail>
+  <screenshot-hall-gallery-detail [gallery]="gallery" [isOwner]="isOwner$ | async" [screenshots]="screenshots$ | async"
+                                  (removeGallery)="removeGallery($event)" (removeScreenshot)="removeScreenshot($event)">
+  </screenshot-hall-gallery-detail>
 </div>
 <screenshot-hall-upload-screenshot *ngIf="isOwner$ | async" [gallery]="gallery"></screenshot-hall-upload-screenshot>
 

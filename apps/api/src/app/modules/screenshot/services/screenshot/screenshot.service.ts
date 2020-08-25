@@ -18,6 +18,14 @@ export class ScreenshotService {
     return this.screenshotRepository.findScreenshots();
   }
 
+  findByGallery(galleryId: string): Promise<ScreenshotEntity[]> {
+    return this.screenshotRepository.find({
+      where: {
+        galleryId: galleryId,
+      },
+    });
+  }
+
   async findOne(id: string): Promise<ScreenshotEntity> {
     try {
       return await this.screenshotRepository.findOneOrFail({ id });

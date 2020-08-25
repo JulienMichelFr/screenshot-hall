@@ -9,5 +9,6 @@ import { DatabaseModule } from '../database/database.module';
   imports: [AuthModule, DataModule, DatabaseModule],
   providers: [ScreenshotService],
   controllers: [ScreenshotController],
+  exports: [ScreenshotService],
 })
 export class ScreenshotModule {}

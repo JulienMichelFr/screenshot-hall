@@ -39,24 +39,31 @@ export class GalleryService {
   }
 
   public getGalleryById(id: string): Observable<IGallery> {
-    return this.http.get<IGallery>(`${this.endpoint}/${id}`).pipe(
-      map((gallery) => {
-        return {
-          ...gallery,
-          screenshots: gallery.screenshots.map(
-            (screenshot): IScreenshot => {
-              return this.screenshotService.setUrls(screenshot);
-            }
-          ),
-        };
-      })
-    );
+    return this.http.get<IGallery>(`${this.endpoint}/${id}`);
   }
 
   public createGallery(
     createGalleryDTO: CreateGalleryDTO
   ): Observable<IGallery> {
     return this.http.post<IGallery>(this.endpoint, createGalleryDTO);
+  }
+
+  public findScreenshotForGallery(
+    galleryId: string
+  ): Observable<IScreenshot[]> {
+    return this.http
+      .get<IScreenshot[]>(`${this.endpoint}/${galleryId}/screenshots`)
+      .pipe(
+        map((screenshots) => {
+          return screenshots.map((screenshot) => {
+            return this.screenshotService.setUrls(screenshot);
+          });
+        })
+      );
+  }
+
+  public removeGallery(gallery: IGallery): Observable<void> {
+    return this.http.delete<void>(`${this.endpoint}/${gallery.id}`);
   }
 
   /*public updateGallery(
