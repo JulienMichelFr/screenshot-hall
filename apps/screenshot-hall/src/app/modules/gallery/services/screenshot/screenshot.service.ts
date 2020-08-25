@@ -20,6 +20,9 @@ export class ScreenshotService {
   constructor(private config: AppConfig, private http: HttpClient) {}
 
   setUrls(screenshot: IScreenshot): IScreenshot {
+    if (!screenshot) {
+      return;
+    }
     const withUrl = (screen: IScreenshotFile): IScreenshotFile => {
       return {
         ...screen,

@@ -11,6 +11,6 @@ export class GalleryCardComponent {
   @Input() gallery: IGallery;
 
   get cover(): string {
-    return `url('${this.gallery.cover.files.small.url}')`;
+    return `url('${this.gallery.cover?.files?.small?.url}')`;
   }
 }
