@@ -1,5 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["es2020", "es2017", "esnext"]
+  },
   "files": [],
   "include": [],
   "references": [

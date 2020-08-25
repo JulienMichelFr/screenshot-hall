@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@database01/nest-config';
 import { AppConfig } from '../configuration/app.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -10,11 +10,11 @@ import { ScreenshotModule } from './modules/screenshot/screenshot.module';
 import { ScreenshotEntity } from './modules/database/entities/screenshot.entity';
 import { DataModule } from './modules/data/data.module';
 import { IgdbModule } from './modules/igdb/igdb.module';
+import { LoggerModule } from './modules/logger/logger.module';
+import { RequestLoggerMiddleware } from './middlewares/request-logger/request-logger.middleware';
 
 @Module({
   imports: [
-    GalleryModule,
-    AuthModule,
     ConfigModule.forRoot<AppConfig>(AppConfig, { isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -28,11 +28,18 @@ import { IgdbModule } from './modules/igdb/igdb.module';
         };
       },
     }),
+    LoggerModule,
+    GalleryModule,
+    AuthModule,
     ScreenshotModule,
     DataModule,
     IgdbModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [RequestLoggerMiddleware],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): any {
+    consumer.apply(RequestLoggerMiddleware).forRoutes('*');
+  }
+}
